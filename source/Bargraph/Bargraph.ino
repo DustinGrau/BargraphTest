@@ -8,7 +8,13 @@
 #include "Bargraph.h"
 
 void setup() {
-  Serial.begin(9600);
+  #if defined(__XTENSA__)
+    // ESP32
+    Serial.begin(115200);
+  #else
+    // Nano
+    Serial.begin(9600);
+  #endif
 
   // Setup the bargraph after a brief delay.
   delay(10);
